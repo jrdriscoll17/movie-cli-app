@@ -1,4 +1,11 @@
+require 'httparty'
+require 'pry'
+
 class API
-    omdb_key = 1f082bdb
-    omdb_url = "http://www.omdbapi.com/?apikey=#{api_key}&"
+    def self.get_response(title, year = nil)
+        formatted_year = "y=#{year}" if year
+
+        omdb_url = "http://www.omdbapi.com/?apikey=1f082bdb&t=#{title}&#{formatted_year}"
+        response = HTTParty.get(omdb_url)
+    end
 end
