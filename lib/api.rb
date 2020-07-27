@@ -1,4 +1,4 @@
 class API
     omdb_key = 1f082bdb
-    omdb_url = "http://www.omdbapi.com/?i=tt3896198&apikey=#{api_key}"
+    omdb_url = "http://www.omdbapi.com/?apikey=#{api_key}&"
 end
