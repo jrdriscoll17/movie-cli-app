@@ -27,22 +27,22 @@ class MovieData
     end
 
     def display_genre
-        API.get_response(title)
+        self[Genre]
     end
 
     def display_rating
-
+        self[Ratings][0][Value]
     end
 
     def display_plot
-
+        self[Plot]
     end
 
     def display_year
-
+        self[Released]
     end
 
     def display_runtime
-
+        self[Runtime]
     end
 end

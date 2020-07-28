@@ -1,5 +1,4 @@
 class CLI
-
     def run
         puts "Please enter the name of a movie you would like information on: "
         user_title = gets.strip
