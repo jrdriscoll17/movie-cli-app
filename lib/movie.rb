@@ -5,43 +5,40 @@ class Movie
 
     @@all = []
 
-    def initialize(title)
-        @title = API.get_response(title)["Title"]
-        @year = API.get_response(title)
-        @genre = API.get_response(title)
-        @rating = API.get_response(title)
-        @plot = API.get_response(title)
-        @runtime = API.get_response(title)
+    def initialize(response)
+        response.each do |attribute, value|
+            self.send("#{attribute}=", value)
+        end
 
         @@all << self
-
     end
 
-    #    API.get_response("batman")
-       binding.pry
+    #    response = API.get_response("batman")
+    #    movie = Movie.new(response)
+    #    binding.pry
 
 
     # def call
 
     # end
 
-    # def display_genre
-    #     self[Genre]
-    # end
+    def self.display_genre
+        self.genre
+    end
 
-    # def display_rating
-    #     self[Ratings][0][Value]
-    # end
+    def self.display_rating
+        self.ratings
+    end
 
-    # def display_plot
-    #     self[Plot]
-    # end
+    def self.display_plot
+        self.plot
+    end
 
-    # def display_year
-    #     self[Released]
-    # end
+    def self.display_year
+        self.year
+    end
 
-    # def display_runtime
-    #     self[Runtime]
-    # end
+    def self.display_runtime
+        self.runtime
+    end
 end
