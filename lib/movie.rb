@@ -3,42 +3,33 @@ require_relative '../config/environment.rb'
 class Movie
     attr_accessor :title, :year, :genre, :rating, :plot, :runtime
 
-    @@all = []
+    # @@all = []
 
     def initialize(response)
         response.each do |attribute, value|
             self.send("#{attribute}=", value)
         end
 
-        @@all << self
+        # @@all << self
     end
 
-    #    response = API.get_response("batman")
-    #    movie = Movie.new(response)
-    #    binding.pry
-
-
-    # def call
-
-    # end
-
-    def self.display_genre
-        self.genre
+    def self.genre
+        @genre
     end
 
-    def self.display_rating
+    def self.rating
         self.ratings
     end
 
-    def self.display_plot
+    def self.plot
         self.plot
     end
 
-    def self.display_year
+    def self.year
         self.year
     end
 
-    def self.display_runtime
+    def self.runtime
         self.runtime
     end
 end

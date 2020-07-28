@@ -12,8 +12,8 @@ class CLI
         input = nil
 
         puts "Please enter the information you would like about #{@title}: "
-        puts "'genre' for the movies genre(s)"
-        puts "'rating' for teh movies IMDB rating"
+        puts "'genre' for the movie's genre(s)"
+        puts "'rating' for the movie's IMDB rating"
         puts "'plot' for a brief summary of the movie"
         puts "'year' for the movie's release date"
         puts "'runtime' for movie's length"
