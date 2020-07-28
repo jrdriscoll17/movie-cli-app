@@ -8,6 +8,6 @@ class API
         omdb_url = "http://www.omdbapi.com/?apikey=1f082bdb&t=#{title}&#{formatted_year}"
         response = HTTParty.get(omdb_url)
 
-        MovieData.new(response["Title"])
+        MovieData.new
     end
 end
