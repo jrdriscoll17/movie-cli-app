@@ -27,9 +27,9 @@ class MovieData
     end
 
     def display_genre
-
+        API.get_response(title)
     end
-    
+
     def display_rating
 
     end
