@@ -25,4 +25,24 @@ class MovieData
         when "runtime" then display_runtime
         end
     end
+
+    def display_genre
+
+    end
+    
+    def display_rating
+
+    end
+
+    def display_plot
+
+    end
+
+    def display_year
+
+    end
+
+    def display_runtime
+
+    end
 end
