@@ -6,13 +6,23 @@ class MovieData
         @year = year if year
     end
 
+    def call
+        input = nil
 
-    case input
-    when "genre" then display_genre
-    when "rating" then display_rating
-    when "plot" then display_plot
-    when "full title" then display_full_title
-    when "year" then display_year
-    when "runtime" then display_runtime
+        puts "Please enter the information you would like about #{@title}: "
+        puts "'genre' for the movies genre(s)"
+        puts "'rating' for teh movies IMDB rating"
+        puts "'plot' for a brief summary of the movie"
+        puts "'year' for the movie's release date"
+        puts "'runtime' for movie's length"
+        input = gets.strip
+
+        case input
+        when "genre" then display_genre
+        when "rating" then display_rating
+        when "plot" then display_plot
+        when "year" then display_year
+        when "runtime" then display_runtime
+        end
     end
 end
