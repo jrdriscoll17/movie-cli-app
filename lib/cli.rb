@@ -1,3 +1,5 @@
+require_relative '../config/environment.rb'
+
 class CLI
     def run
         puts "Please enter the name of a movie you would like information on: "

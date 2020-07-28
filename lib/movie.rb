@@ -1,13 +1,25 @@
+require_relative '../config/environment.rb'
+
 class Movie
     attr_accessor :title, :year, :genre, :rating, :plot, :runtime
-    def initialize
-        @title = API.get_response
-        @year = API.get_response
-        @genre =
-        @rating =
-        @plot =
-        @runtime =
+
+    @@all = []
+
+    def initialize(title)
+        @title = API.get_response(title)["Title"]
+        @year = API.get_response(title)
+        @genre = API.get_response(title)
+        @rating = API.get_response(title)
+        @plot = API.get_response(title)
+        @runtime = API.get_response(title)
+
+        @@all << self
+
     end
+
+    #    API.get_response("batman")
+       binding.pry
+
 
     # def call
 
