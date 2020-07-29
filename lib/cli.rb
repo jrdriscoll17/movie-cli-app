@@ -1,7 +1,7 @@
 require_relative '../config/environment.rb'
 
 class CLI
-    def self.run
+    def self.get_movie
         print "Please enter the name of a movie you would like information on: "
         user_title = gets.strip
         print "Please enter the year the movie was made (press enter if you do not wish to provide the year): "
@@ -15,8 +15,13 @@ class CLI
         else
             movie = Movie.new(api_response)
         end
+    end
 
-        puts "Please enter the information you would like about #{movie.title}:\n\n"
+
+    def self.run
+        get_movie
+
+        puts "Please enter the information you would like about #{get_movie.title}:\n\n"
         puts "'genre' for the movie's genre(s)"
         puts "'rating' for the movie's IMDB rating"
         puts "'plot' for a brief summary of the movie"
@@ -26,11 +31,11 @@ class CLI
         input = gets.strip
 
         case input
-        when "genre" then puts movie.genre
-        when "rating" then puts movie.rating
-        when "plot" then puts movie.plot
-        when "year" then puts movie.year
-        when "runtime" then puts movie.runtime
+        when "genre" then puts get_movie.genre
+        when "rating" then puts get_movie.rating
+        when "plot" then puts get_movie.plot
+        when "year" then puts get_movie.year
+        when "runtime" then puts get_movie.runtime
         end
     end
 
