@@ -8,7 +8,13 @@ class CLI
         user_year = gets.strip
 
         api_response = API.get_response(user_title, user_year)
-        movie = Movie.new(api_response)
+
+        if api_response["Error"]
+            puts api_response["Error"]
+            CLI.run
+        else
+            movie = Movie.new(api_response)
+        end
 
         puts "Please enter the information you would like about #{movie.title}:\n\n"
         puts "'genre' for the movie's genre(s)"
