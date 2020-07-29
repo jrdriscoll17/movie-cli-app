@@ -14,9 +14,16 @@ class CLI
         end
     end
 
-
     def self.get_movie_info(movie)
         input = gets.strip
+
+        if input != "genre" && input != "rating" && input != "plot" &&
+           input != "year" && input != "runtime" && input != "exit"
+
+           puts "Please enter a valid option!"
+           print "Selection: "
+           get_movie_info(movie)
+        end
 
         case input
         when "genre" then puts movie.genre
@@ -36,7 +43,7 @@ class CLI
 
         movie = get_movie
 
-        puts "What information would you like to see?\n\n"
+        puts "\n\nWhat information would you like to see?\n\n"
         puts "'genre' for the movie's genre(s)"
         puts "'rating' for the movie's IMDB rating"
         puts "'plot' for a brief summary of the movie"
@@ -46,5 +53,4 @@ class CLI
 
         get_movie_info(movie)
     end
-    # binding.pry
 end
