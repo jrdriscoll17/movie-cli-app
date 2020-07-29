@@ -8,18 +8,20 @@ class API
         response = HTTParty.get(omdb_url)
 
         if response["Error"]
-            response["Error"]
+            response
         else
             attributes = {
                 :title => response["Title"],
                 :year => response["Year"],
                 :genre => response["Genre"],
-                :rating => response["Ratings"][0]["Value"],
                 :plot => response["Plot"],
                 :runtime => response["Runtime"]
             }
+            if response["Ratings"] == []
+                attributes[:rating] = "N/A"
+            else
+                attributes[:rating] = response["Ratings"][0]["Value"]
+            end
         end
-
-
     end
 end
