@@ -23,5 +23,6 @@ class API
                 attributes[:rating] = response["Ratings"][0]["Value"]
             end
         end
+        attributes
     end
 end
