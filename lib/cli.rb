@@ -18,16 +18,8 @@ class CLI
     end
 
 
-    def self.run
-        get_movie
-
-        puts "Please enter the information you would like about #{get_movie.title}:\n\n"
-        puts "'genre' for the movie's genre(s)"
-        puts "'rating' for the movie's IMDB rating"
-        puts "'plot' for a brief summary of the movie"
-        puts "'year' for the movie's release date"
-        puts "'runtime' for movie's length\n\n"
-        print "Selection: "
+    def self.get_movie_info
+        # movie = get_movie
         input = gets.strip
 
         case input
@@ -36,8 +28,20 @@ class CLI
         when "plot" then puts get_movie.plot
         when "year" then puts get_movie.year
         when "runtime" then puts get_movie.runtime
+        when "exit" then exit
         end
     end
 
+    def self.run
+        puts "What information would you like to see?\n\n"
+        puts "'genre' for the movie's genre(s)"
+        puts "'rating' for the movie's IMDB rating"
+        puts "'plot' for a brief summary of the movie"
+        puts "'year' for the movie's release date"
+        puts "'runtime' for movie's length\n\n"
+        print "Selection: "
+
+        get_movie_info
+    end
     # binding.pry
 end
