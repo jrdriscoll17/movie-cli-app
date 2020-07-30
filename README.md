@@ -5,9 +5,6 @@ This app allows you to input the name of any movie as well as an optional year o
 ## Summary
 
   - [Getting Started](#getting-started)
-  - [Running the tests](#running-the-tests)
-  - [Deployment](#deployment)
-  - [Built With](#built-with)
   - [Authors](#authors)
   - [License](#license)
 
@@ -15,58 +12,19 @@ This app allows you to input the name of any movie as well as an optional year o
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-    Give examples
+your local machine for development and testing purposes.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development
-env running
+1. Fork and clone this repository
 
-Say what the step will be
+2. Change directories to where you installed the repo
 
-    Give the example
+    ```cd your_install_path/movie-cli-app```
 
-And repeat
+3. Execute the run file in bin from your terminal
 
-    until finished
-
-End with an example of getting some data out of the system or using it
-for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-    Give an example
-
-### And coding style tests
-
-Explain what these tests test and why
-
-    Give an example
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
-
+    ```bin/run```
 
 ## Authors
 
@@ -75,6 +33,10 @@ Add additional notes about how to deploy this on a live system
 
 ## License
 
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
-details
+Copyright <2020> <Jake Driscoll>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
