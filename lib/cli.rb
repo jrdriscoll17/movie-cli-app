@@ -55,11 +55,11 @@ class CLI
         clear_screen
         puts "\n\n***************************************************************".colorize(:green)
         puts "What information would you like to see for #{movie.title}?\n".colorize(:blue)
-        puts "1. ".colorize(:blue) + "'genre' ".colorize(:red) + "for the movie's genre(s)"
-        puts "2. ".colorize(:blue) + "'rating' ".colorize(:red) + "for the movie's IMDB rating"
-        puts "3. ".colorize(:blue) + "'plot' ".colorize(:red) + "for a brief summary of the movie"
-        puts "4. ".colorize(:blue) + "'year' ".colorize(:red) + "for the movie's release date"
-        puts "5. ".colorize(:blue) + "'runtime' ".colorize(:red) + "for movie's length"
+        puts "1. ".colorize(:blue) + "Type " + "'genre' ".colorize(:red) + "for the movie's genre(s)"
+        puts "2. ".colorize(:blue) + "Type " + "'rating' ".colorize(:red) + "for the movie's IMDB rating"
+        puts "3. ".colorize(:blue) + "Type " + "'plot' ".colorize(:red) + "for a brief summary of the movie"
+        puts "4. ".colorize(:blue) + "Type " + "'year' ".colorize(:red) + "for the movie's release date"
+        puts "5. ".colorize(:blue) + "Type " + "'runtime' ".colorize(:red) + "for movie's length"
         puts "***************************************************************\n\n".colorize(:green)
         puts "Type " + "'exit' ".colorize(:red) + "when finished or " + "'new' ".colorize(:blue) + "to select a different title!"
         print "Selection: "
