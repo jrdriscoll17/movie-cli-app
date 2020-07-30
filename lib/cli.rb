@@ -35,10 +35,9 @@ class CLI
            input != "year" && input != "runtime" && input != "exit" &&
            input != "new"
 
-           puts "Please enter a valid option!"
+           puts "Please enter a valid option (or type exit to quit)!"
            print "Selection: "
            input = gets.strip
-           get_movie_info(movie, input)
         end
 
         case input
@@ -47,6 +46,7 @@ class CLI
         when "plot" then puts "\n\n#{movie.plot}".colorize(:blue)
         when "year" then puts "\n\n#{movie.year}".colorize(:blue)
         when "runtime" then puts "\n\n#{movie.runtime}".colorize(:blue)
+        when "exit" then exit
         when "new" then run
         end
     end
