@@ -1,5 +1,5 @@
 class CLI
-    def self.get_movie
+    def get_movie
         print "Please enter the name of a movie you would like information on: "
         user_title = gets.strip
         print "Please enter the year the movie was made (press enter if you do not wish to provide the year): "
@@ -20,17 +20,17 @@ class CLI
 
             if api_response == nil
                 puts "Movie not found!"
-                run
+                self.run
             elsif api_response["Error"]
                 puts api_response["Error"]
-                run
+                self.run
             else
                 Movie.new(api_response)
             end
         end
     end
 
-    def self.get_movie_info(movie, input)
+    def get_movie_info(movie, input)
         if input != "genre" && input != "rating" && input != "plot" &&
            input != "year" && input != "runtime" && input != "exit" &&
            input != "new"
@@ -47,12 +47,12 @@ class CLI
         when "year" then puts "\n\n#{movie.year}".colorize(:blue)
         when "runtime" then puts "\n\n#{movie.runtime}".colorize(:blue)
         when "exit" then exit
-        when "new" then run
+        when "new" then self.run
         end
     end
 
-    def self.options(movie)
-        clear_screen
+    def options(movie)
+        self.clear_screen
         puts "\n\n***************************************************************".colorize(:green)
         puts "What information would you like to see for #{movie.title}?\n".colorize(:blue)
         puts "1. ".colorize(:blue) + "Type " + "'genre' ".colorize(:red) + "for the movie's genre(s)"
@@ -65,31 +65,31 @@ class CLI
         print "Selection: "
     end
 
-    def self.run_with_greeting
-        clear_screen
+    def run_with_greeting
+        self.clear_screen
         puts "\n\n*******************************".colorize(:green)
         puts " WELCOME TO THE MOVIE DATABASE".colorize(:blue)
         puts "*******************************\n\n".colorize(:green)
-        run
+        self.run
     end
 
-    def self.clear_screen
+    def clear_screen
         puts "\e[H\e[2J"
     end
 
-    def self.run
-        movie = get_movie
+    def run
+        movie = self.get_movie
         options(movie)
         input = gets.strip
 
-        get_movie_info(movie, input)
+        self.get_movie_info(movie, input)
 
         while input != "exit"
             sleep 2
-            options(movie)
+            self.options(movie)
             input = gets.strip
-            clear_screen if input == "new"
-            get_movie_info(movie, input)
+            self.clear_screen if input == "new"
+            self.get_movie_info(movie, input)
         end
     end
 end
