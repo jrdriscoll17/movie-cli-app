@@ -5,7 +5,13 @@ class CLI
         print "Please enter the year the movie was made (press enter if you do not wish to provide the year): "
         user_year = gets.strip
 
-        movie_from_array = Movie.all.find{|movie| movie.title.downcase.include?(user_title.downcase)}
+        if user_year
+            movie_from_array = Movie.all.find do |movie|
+                movie.title.downcase.include?(user_title.downcase) && movie.title.downcase.include?(user_year)
+            end
+        else
+            movie_from_array = Movie.all.find{|movie| movie.title.downcase.include?(user_title.downcase)}
+        end
 
         if movie_from_array != nil
             movie_from_array
