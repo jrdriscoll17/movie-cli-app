@@ -1,5 +1,3 @@
-require 'pry'
-require 'httparty'
 require 'colorize'
 
 require_relative '../lib/api.rb'
