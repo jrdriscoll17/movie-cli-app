@@ -4,19 +4,30 @@ class CLI
     attr_accessor :user_title, :user_year
 
     def self.get_movie
-        api_response = API.get_response(@user_title, @user_year)
+        movie_from_array = Movie.all.find{|movie| movie.title.downcase.include?(@user_title.downcase)}
 
-        if api_response["Error"]
-            puts api_response["Error"]
-            CLI.run
+        if movie_from_array != nil
+            movie_from_array
         else
-            Movie.new(api_response)
+            api_response = API.get_response(@user_title, @user_year)
+            # binding.pry
+
+            if api_response == nil
+                puts "Movie not found!"
+                run
+            elsif api_response["Error"]
+                puts api_response["Error"]
+                run
+            else
+                Movie.new(api_response)
+            end
         end
     end
 
     def self.get_movie_info(movie, input)
         if input != "genre" && input != "rating" && input != "plot" &&
-           input != "year" && input != "runtime" && input != "exit"
+           input != "year" && input != "runtime" && input != "exit" &&
+           input != "new"
 
            puts "Please enter a valid option!"
            print "Selection: "
@@ -31,6 +42,7 @@ class CLI
         when "year" then puts movie.year
         when "runtime" then puts movie.runtime
         when "exit" then "exit"
+        when "new" then run
         end
     end
 
@@ -41,7 +53,8 @@ class CLI
         puts "'plot' for a brief summary of the movie"
         puts "'year' for the movie's release date"
         puts "'runtime' for movie's length\n\n"
-        print "Selection (type 'exit' when finished): "
+        puts "Type 'exit' when finished or 'new' to select a different title!"
+        print "Selection: "
     end
 
     def self.run
