@@ -14,15 +14,14 @@ class CLI
         end
     end
 
-    def self.get_movie_info(movie)
-        input = gets.strip
-
+    def self.get_movie_info(movie, input)
         if input != "genre" && input != "rating" && input != "plot" &&
            input != "year" && input != "runtime" && input != "exit"
 
            puts "Please enter a valid option!"
            print "Selection: "
-           get_movie_info(movie)
+           input = gets.strip
+           get_movie_info(movie, input)
         end
 
         case input
@@ -31,8 +30,18 @@ class CLI
         when "plot" then puts movie.plot
         when "year" then puts movie.year
         when "runtime" then puts movie.runtime
-        when "exit" then exit
+        when "exit" then "exit"
         end
+    end
+
+    def self.options
+        puts "\n\nWhat information would you like to see?\n\n"
+        puts "'genre' for the movie's genre(s)"
+        puts "'rating' for the movie's IMDB rating"
+        puts "'plot' for a brief summary of the movie"
+        puts "'year' for the movie's release date"
+        puts "'runtime' for movie's length\n\n"
+        print "Selection (type 'exit' when finished): "
     end
 
     def self.run
@@ -43,14 +52,16 @@ class CLI
 
         movie = get_movie
 
-        puts "\n\nWhat information would you like to see?\n\n"
-        puts "'genre' for the movie's genre(s)"
-        puts "'rating' for the movie's IMDB rating"
-        puts "'plot' for a brief summary of the movie"
-        puts "'year' for the movie's release date"
-        puts "'runtime' for movie's length\n\n"
-        print "Selection: "
+        options
 
-        get_movie_info(movie)
+        input = gets.strip
+
+        get_movie_info(movie, input)
+
+        while input != "exit"
+            options
+            input = gets.strip
+            get_movie_info(movie, input)
+        end
     end
 end
