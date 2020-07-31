@@ -3,9 +3,7 @@ class Movie
     @@all = []
 
     def initialize(response)
-        response.each do |attribute, value|
-            self.send("#{attribute}=", value)
-        end
+        response.each{|attribute, value| self.send("#{attribute}=", value)}
         @@all << self
     end
 
