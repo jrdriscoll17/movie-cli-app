@@ -9,7 +9,7 @@ class CLI
             user_title = gets.strip
         end
 
-        print "Please enter the year the movie was made (press enter if you do not wish to provide the year): "
+        print "Please enter the year the movie was made (ENTER to skip): "
         user_year = gets.strip
 
         if user_year
@@ -38,23 +38,18 @@ class CLI
     end
 
     def get_movie_info(movie, input)
-        if input != "genre" && input != "rating" && input != "plot" &&
-           input != "year" && input != "runtime" && input != "exit" &&
-           input != "new"
-
-           puts "Please enter a valid option (or type exit to quit)!"
-           print "Selection: "
-           input = gets.strip
-        end
-
         case input
-        when "genre" then puts "\n\n#{movie.genre}".colorize(:cyan)
-        when "rating" then puts "\n\n#{movie.rating}".colorize(:cyan)
-        when "plot" then puts "\n\n#{movie.plot}".colorize(:cyan)
-        when "year" then puts "\n\n#{movie.year}".colorize(:cyan)
-        when "runtime" then puts "\n\n#{movie.runtime}".colorize(:cyan)
+        when "genre" then puts "\n\nGenre(s): #{movie.genre}".colorize(:cyan)
+        when "rating" then puts "\n\nIMDB Rating: #{movie.rating}".colorize(:cyan)
+        when "plot" then puts "\n\nPlot Summary: #{movie.plot}".colorize(:cyan)
+        when "year" then puts "\n\nRelease year: #{movie.year}".colorize(:cyan)
+        when "runtime" then puts "\n\nRuntime: #{movie.runtime}".colorize(:cyan)
         when "exit" then exit
         when "new" then self.run
+        else
+            puts "Please enter a valid option (or type exit to quit)!"
+            print "Selection: "
+            input = gets.strip
         end
     end
 
