@@ -12,7 +12,7 @@ class Movie
     end
 
     def self.get_movie(movie)
-        return @@searches[movie[:title]] if @@searches.has_key?(movie[:title])
+        return @@searches[movie] if @@searches.has_key?(movie)
         
         api_response = API.get_response(movie)
 
@@ -20,12 +20,11 @@ class Movie
             puts api_response["Error"]
             self.run
         else
-            Movie.new(movie[:title], api_response)
+            Movie.new(movie, api_response)
         end
     end
 
     def self.get_movie_info_selection(movie, input)
-        # binding.pry
         case input
         when "genre" then puts "\n\nGenre(s): #{movie.genre}".colorize(:cyan)
         when "rating" then puts "\n\nIMDB Rating: #{movie.rating}".colorize(:cyan)

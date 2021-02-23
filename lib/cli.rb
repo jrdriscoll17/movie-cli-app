@@ -54,14 +54,6 @@ class CLI
         end
     end
 
-    # def run_with_greeting
-    #     self.clear_screen
-    #     puts "\n\n*******************************".colorize(:green)
-    #     puts " WELCOME TO THE MOVIE DATABASE".colorize(:cyan)
-    #     puts "*******************************\n".colorize(:green)
-    #     self.run
-    # end
-
     def self.clear_screen
         puts "\e[H\e[2J"
     end
