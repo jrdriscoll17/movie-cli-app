@@ -15,8 +15,8 @@ class CLI
         movie = {title: user_title, year: user_year}
     end
 
-    def display_options(movie)
-        self.clear_screen
+    def self.display_options(movie)
+        CLI.clear_screen
         puts "\n\n***************************************************************".colorize(:green)
         puts "What information would you like to see for #{movie.title}?\n".colorize(:cyan)
         puts "1. ".colorize(:cyan) + "Type " + "'genre' ".colorize(:red) + "for the movie's genre(s)"
@@ -29,20 +29,24 @@ class CLI
         print "\nSelection: "
     end
 
-    def select_from_options(movie)
+    def self.select_from_options(movie)
         input = gets.strip.downcase
 
         if input == "new"
-            self.run_with_greeting
+            self.new.run
         elsif input == "exit"
             exit
         else
-            Movie.get_movie_info_selection(movie, input)
+            while Movie.get_movie_info_selection(movie, input) == false
+                puts "Please enter a valid option (or type exit to quit)!"
+                print "Selection: "
+                self.select_from_options(movie)
+            end
             print "Would you like to make a different selection? (Y/n)"
             should_continue = gets.strip
 
             if should_continue.downcase == "y" || should_continue == ""
-                self.display_options(movie) 
+                CLI.display_options(movie) 
                 self.select_from_options(movie)
             else
                 exit
@@ -50,23 +54,27 @@ class CLI
         end
     end
 
-    def run_with_greeting
-        self.clear_screen
-        puts "\n\n*******************************".colorize(:green)
-        puts " WELCOME TO THE MOVIE DATABASE".colorize(:cyan)
-        puts "*******************************\n".colorize(:green)
-        self.run
-    end
+    # def run_with_greeting
+    #     self.clear_screen
+    #     puts "\n\n*******************************".colorize(:green)
+    #     puts " WELCOME TO THE MOVIE DATABASE".colorize(:cyan)
+    #     puts "*******************************\n".colorize(:green)
+    #     self.run
+    # end
 
-    def clear_screen
+    def self.clear_screen
         puts "\e[H\e[2J"
     end
 
     def run
+        CLI.clear_screen
+        puts "\n\n*******************************".colorize(:green)
+        puts " WELCOME TO THE MOVIE DATABASE".colorize(:cyan)
+        puts "*******************************\n".colorize(:green)
         user_selection = self.get_movie_title_and_year
         movie = Movie.get_movie(user_selection)
 
-        self.display_options(movie)
-        self.select_from_options(movie)
+        CLI.display_options(movie)
+        CLI.select_from_options(movie)
     end
 end
