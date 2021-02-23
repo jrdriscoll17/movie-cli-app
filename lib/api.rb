@@ -1,8 +1,8 @@
 class API
-    def self.get_response(title, year = nil)
-        formatted_year = "y=#{year}" if year
+    def self.get_response(movie)
+        formatted_year = "y=#{movie[:year]}" if movie[:year] != ""
 
-        omdb_url = "http://www.omdbapi.com/?apikey=1f082bdb&t=#{title}&#{formatted_year}"
+        omdb_url = "http://www.omdbapi.com/?apikey=1f082bdb&t=#{movie[:title]}&#{formatted_year}"
         response = HTTParty.get(omdb_url)
 
         response["Error"] ? response : attributes = {

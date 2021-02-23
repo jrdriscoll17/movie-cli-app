@@ -1,5 +1,5 @@
 class CLI
-    def get_movie
+    def get_movie_title_and_year
         print "Please enter the name of a movie you would like information on: "
         user_title = gets.strip
 
@@ -12,48 +12,10 @@ class CLI
         print "Please enter the year the movie was made (ENTER to skip): "
         user_year = gets.strip
 
-        if user_year
-            movie_from_array = Movie.all.find do |movie|
-                movie.title.downcase.include?(user_title.downcase) && movie.title.downcase.include?(user_year)
-            end
-        else
-            movie_from_array = Movie.all.find{|movie| movie.title.downcase.include?(user_title.downcase)}
-        end
-
-        if movie_from_array != nil
-            movie_from_array
-        else
-            api_response = API.get_response(user_title, user_year)
-
-            if api_response == nil
-                puts "Movie not found!"
-                self.run
-            elsif api_response["Error"]
-                puts api_response["Error"]
-                self.run
-            else
-                Movie.new(api_response)
-            end
-        end
+        movie = {title: user_title, year: user_year}
     end
 
-    def get_movie_info(movie, input)
-        case input
-        when "genre" then puts "\n\nGenre(s): #{movie.genre}".colorize(:cyan)
-        when "rating" then puts "\n\nIMDB Rating: #{movie.rating}".colorize(:cyan)
-        when "plot" then puts "\n\nPlot Summary: #{movie.plot}".colorize(:cyan)
-        when "year" then puts "\n\nRelease year: #{movie.year}".colorize(:cyan)
-        when "runtime" then puts "\n\nRuntime: #{movie.runtime}".colorize(:cyan)
-        when "exit" then exit
-        when "new" then self.run
-        else
-            puts "Please enter a valid option (or type exit to quit)!"
-            print "Selection: "
-            input = gets.strip
-        end
-    end
-
-    def options(movie)
+    def display_options(movie)
         self.clear_screen
         puts "\n\n***************************************************************".colorize(:green)
         puts "What information would you like to see for #{movie.title}?\n".colorize(:cyan)
@@ -62,16 +24,37 @@ class CLI
         puts "3. ".colorize(:cyan) + "Type " + "'plot' ".colorize(:red) + "for a brief summary of the movie"
         puts "4. ".colorize(:cyan) + "Type " + "'year' ".colorize(:red) + "for the movie's release date"
         puts "5. ".colorize(:cyan) + "Type " + "'runtime' ".colorize(:red) + "for movie's length"
-        puts "***************************************************************\n\n".colorize(:green)
+        puts "\n***************************************************************\n".colorize(:green)
         puts "Type " + "'exit' ".colorize(:red) + "when finished or " + "'new' ".colorize(:cyan) + "to select a different title!"
-        print "Selection: "
+        print "\nSelection: "
+    end
+
+    def select_from_options(movie)
+        input = gets.strip.downcase
+
+        if input == "new"
+            self.run_with_greeting
+        elsif input == "exit"
+            exit
+        else
+            Movie.get_movie_info_selection(movie, input)
+            print "Would you like to make a different selection? (Y/n)"
+            should_continue = gets.strip
+
+            if should_continue.downcase == "y" || should_continue == ""
+                self.display_options(movie) 
+                self.select_from_options(movie)
+            else
+                exit
+            end
+        end
     end
 
     def run_with_greeting
         self.clear_screen
         puts "\n\n*******************************".colorize(:green)
         puts " WELCOME TO THE MOVIE DATABASE".colorize(:cyan)
-        puts "*******************************\n\n".colorize(:green)
+        puts "*******************************\n".colorize(:green)
         self.run
     end
 
@@ -80,18 +63,10 @@ class CLI
     end
 
     def run
-        movie = self.get_movie
-        options(movie)
-        input = gets.strip
+        user_selection = self.get_movie_title_and_year
+        movie = Movie.get_movie(user_selection)
 
-        self.get_movie_info(movie, input)
-
-        while input != "exit"
-            sleep 2
-            self.options(movie)
-            input = gets.strip
-            self.clear_screen if input == "new"
-            self.get_movie_info(movie, input)
-        end
+        self.display_options(movie)
+        self.select_from_options(movie)
     end
 end
