@@ -45,7 +45,7 @@ class CLI
             print "Would you like to make a different selection? (Y/n)"
             should_continue = gets.strip
 
-            if should_continue.downcase == "y" || should_continue == ""
+            if should_continue.downcase != "n"
                 CLI.display_options(movie) 
                 self.select_from_options(movie)
             else
